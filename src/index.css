@@ -1,31 +1,9 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@import "tailwindcss";
 
 html {
   -moz-text-size-adjust: none;
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
-  overflow-y: scroll;
-}
-
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
-  margin-block-end: 0;
-}
-
-ul {
-  list-style: none;
 }
 
 body {
@@ -72,12 +50,6 @@ picture {
   display: block;
 }
 
-button {
-  border: none;
-  cursor: pointer;
-  text-transform: uppercase;
-}
-
 input,
 button,
 textarea,
@@ -88,13 +60,6 @@ select {
 
 :target {
   scroll-margin-block: 5ex;
-}
-
-@supports (scrollbar-gutter: stable) {
-  html {
-    overflow-y: auto;
-    scrollbar-gutter: stable;
-  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
