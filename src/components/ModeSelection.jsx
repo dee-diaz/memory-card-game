@@ -8,7 +8,7 @@ export const LEVEL = {
 
 export default function ModeSelection() {
   return (
-    <div className="grid gap-16 justify-center">
+    <div className="grid gap-16 justify-center -translate-y-16">
       <div className="grid gap-8 justify-center">
         <img className="w-xs lg:w-xl" src="/logo.webp" alt="Pokemon logo" />
         <h1 className="text-center text-2xl text-(--clr-text-blue) uppercase">
