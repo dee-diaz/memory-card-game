@@ -10,6 +10,15 @@
 
 @theme {
   --font-sans: 'ClashGrotesk', sans-serif;
+  --clr-text-blue: hsl(222, 54%, 28%);
+  --clr-btn-primary: hsl(0, 0%, 100%);
+  --clr-btn-easy: hsl(148, 74%, 53%);
+  --clr-btn-medium: hsl(48, 100%, 51%);
+  --clr-btn-hard: hsl(24, 90%, 51%);
+  --clr-text-primary: hsla(30, 20%, 2%, 1);
+  --clr-border: hsla(30, 20%, 2%, 1);
+  --shadow: 3px 3px 0 0 #060504;
+  --shadow-hover: 6px 5px 0 0 #060504;
 }
 
 html {
@@ -23,16 +32,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   font-size-adjust: 0.52;
-}
-
-h1,
-h2,
-h3,
-h4,
-button,
-input,
-label {
-  line-height: 1.1;
+  color: var(--clr-text-primary);
 }
 
 h1,
@@ -60,14 +60,6 @@ img,
 picture {
   max-width: 100%;
   display: block;
-}
-
-input,
-button,
-textarea,
-select {
-  font-family: inherit;
-  font-size: inherit;
 }
 
 :target {
