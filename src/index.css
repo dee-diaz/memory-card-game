@@ -25,6 +25,7 @@
   --clr-btn-hard: hsl(24, 90%, 51%);
   --clr-text-primary: hsla(30, 20%, 2%, 1);
   --clr-border: hsla(30, 20%, 2%, 1);
+  --clr-overlay: hsla(0, 0%, 0%, 0.4);
   --shadow: 3px 3px 0 0 #060504;
   --shadow-hover: 6px 5px 0 0 #060504;
 }

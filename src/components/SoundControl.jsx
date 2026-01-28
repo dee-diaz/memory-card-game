@@ -7,7 +7,7 @@ export default function SoundControl() {
     <button
       onClick={() => setIsSoundOn(!isSoundOn)}
       type="button"
-      className="cursor-pointer flex justify-center items-center rounded-full bg-white w-12 h-12 border-3 border-(--clr-border) shadow-(--shadow) transition-[box-shadow,scale] duration-300 ease-out hover:shadow-(--shadow-hover) active:scale-[0.95] lg:w-16 lg:h-16"
+      className="relative cursor-pointer flex justify-center items-center rounded-full bg-white w-12 h-12 border-3 border-(--clr-border) shadow-(--shadow) transition-[box-shadow,scale] duration-300 ease-out hover:shadow-(--shadow-hover) active:scale-[0.95] lg:w-16 lg:h-16"
     >
       {isSoundOn ? (
         <svg
