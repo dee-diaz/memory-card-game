@@ -1,0 +1,18 @@
+export default function Footer() {
+  return (
+    <footer className="w-full flex justify-center pb-3">
+      <p className="uppercase font-normal text-white text-base">
+        Created by {' '}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Diana Diaz (opens in a new tab)"
+          href="https://github.com/dee-diaz"
+          className="transition-colors hover:text-amber-300"
+        >
+          Diana Diaz
+        </a>
+      </p>
+    </footer>
+  );
+}
