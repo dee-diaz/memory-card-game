@@ -11,7 +11,7 @@ export default function ModeSelection() {
     <div className="grid gap-16 justify-center -translate-y-16">
       <div className="grid gap-8 justify-center">
         <img className="w-xs lg:w-xl" src="/logo.webp" alt="Pokemon logo" />
-        <h1 className="text-center text-2xl text-(--clr-text-blue) uppercase">
+        <h1 className="text-center text-2xl text-(--clr-text-blue) uppercase lg:text-4xl">
           Memory card game
         </h1>
       </div>

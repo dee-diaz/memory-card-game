@@ -7,15 +7,14 @@ export default function SoundControl() {
     <button
       onClick={() => setIsSoundOn(!isSoundOn)}
       type="button"
-      className="cursor-pointer flex justify-center items-center rounded-full bg-white w-12 h-12 border-3 border-(--clr-border) shadow-(--shadow) transition-[box-shadow,scale] duration-300 ease-out hover:shadow-(--shadow-hover) active:scale-[0.95]"
+      className="cursor-pointer flex justify-center items-center rounded-full bg-white w-12 h-12 border-3 border-(--clr-border) shadow-(--shadow) transition-[box-shadow,scale] duration-300 ease-out hover:shadow-(--shadow-hover) active:scale-[0.95] lg:w-16 lg:h-16"
     >
       {isSoundOn ? (
         <svg
-          width="20"
-          height="20"
           viewBox="0 0 20 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className='w-5 h-5 lg:w-8 lg:h-8'
         >
           <path
             fillRule="evenodd"
@@ -26,11 +25,10 @@ export default function SoundControl() {
         </svg>
       ) : (
         <svg
-          width="20"
-          height="20"
           viewBox="0 0 20 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          className='w-5 h-5 lg:w-8 lg:h-8'
         >
           <path
             fillRule="evenodd"
