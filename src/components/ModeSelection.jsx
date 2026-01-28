@@ -1,12 +1,12 @@
 import ModeButton from './ModeButton';
 
-export const LEVEL = {
+export const MODE = {
   EASY: 'Easy',
   MEDIUM: 'Medium',
   HARD: 'Hard',
 };
 
-export default function ModeSelection() {
+export default function ModeSelection({ onClick }) {
   return (
     <div className="relative grid gap-16 justify-center -translate-y-16">
       <div className="grid gap-8 justify-center">
@@ -16,9 +16,9 @@ export default function ModeSelection() {
         </h1>
       </div>
       <div className="grid justify-center gap-6 lg:flex">
-        <ModeButton level={LEVEL.EASY} />
-        <ModeButton level={LEVEL.MEDIUM} />
-        <ModeButton level={LEVEL.HARD} />
+        <ModeButton onClick={onClick} mode={MODE.EASY} />
+        <ModeButton onClick={onClick} mode={MODE.MEDIUM} />
+        <ModeButton onClick={onClick} mode={MODE.HARD} />
       </div>
     </div>
   );

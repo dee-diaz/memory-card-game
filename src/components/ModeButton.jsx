@@ -1,20 +1,21 @@
-import { LEVEL } from './ModeSelection';
+import { MODE } from './ModeSelection';
 
-export default function ModeButton({ level }) {
+export default function ModeButton({ mode, onClick }) {
   const bgColors = {
-    [LEVEL.EASY]: 'bg-[var(--clr-btn-easy)]',
-    [LEVEL.MEDIUM]: 'bg-[var(--clr-btn-medium)]',
-    [LEVEL.HARD]: 'bg-[var(--clr-btn-hard)]',
+    [MODE.EASY]: 'bg-[var(--clr-btn-easy)]',
+    [MODE.MEDIUM]: 'bg-[var(--clr-btn-medium)]',
+    [MODE.HARD]: 'bg-[var(--clr-btn-hard)]',
     default: 'bg-[var(--clr-btn-primary)]',
   };
-  const bgClr = bgColors[level] || bgColors.default;
+  const bgClr = bgColors[mode] || bgColors.default;
 
   return (
     <button
       type="button"
       className={`cursor-pointer ${bgClr} py-4 px-8 rounded-2xl uppercase text-2xl border-3 border-(--clr-border) shadow-(--shadow) transition-[box-shadow,translate,scale] duration-300 ease-out hover:shadow-(--shadow-hover) hover:-translate-y-0.5 active:scale-[0.95]`}
+      onClick={() => onClick(mode)}
     >
-      {level}
+      {mode}
     </button>
   );
 }
