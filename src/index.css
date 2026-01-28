@@ -2,6 +2,14 @@
 
 @font-face {
   font-family: 'ClashGrotesk';
+  src: url('/fonts/ClashGrotesk-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ClashGrotesk';
   src: url('/fonts/ClashGrotesk-Semibold.woff2') format('woff2');
   font-weight: 600;
   font-display: swap;
@@ -21,18 +29,13 @@
   --shadow-hover: 6px 5px 0 0 #060504;
 }
 
-html {
-  -moz-text-size-adjust: none;
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
-}
-
 body {
   min-height: 100vh;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   font-size-adjust: 0.52;
   color: var(--clr-text-primary);
+  font-weight: 600;
 }
 
 h1,
