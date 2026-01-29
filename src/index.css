@@ -26,7 +26,10 @@
   --clr-text-primary: hsla(30, 20%, 2%, 1);
   --clr-border: hsla(30, 20%, 2%, 1);
   --clr-overlay: hsla(0, 0%, 0%, 0.4);
+  --clr-bg-card: hsla(242, 87%, 87%, 1);
+  --clr-bg-card-hover: hsla(242, 87%, 82%, 1);
   --shadow: 3px 3px 0 0 #060504;
+  --shadow-card: 0 0 0 0 #060504;
   --shadow-hover: 6px 5px 0 0 #060504;
 }
 
