@@ -23,7 +23,7 @@ export default function CardGrid({ mode }) {
       <Card />
       <Card />
 
-      <Card className="col-start-2" />
+      <Card className="lg:col-start-2" />
       <Card />
       <Card />
     </div>
