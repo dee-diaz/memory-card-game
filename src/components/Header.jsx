@@ -5,7 +5,7 @@ import Button from './Button';
 export default function Header() {
   return (
     <header className="relative grid grid-cols-2 items-center gap-y-8 lg:grid-cols-3">
-      <a href="/">
+      <a className="w-fit" href="/">
         <img className="w-32 lg:w-48" src="/logo.webp" alt="Pokemon logo" />
       </a>
 
