@@ -1,11 +1,25 @@
-import { useState } from 'react';
+const btnSfx = new Audio('/audio/sound-effect-btn.mp3');
+const cardFlipSfx = new Audio('/audio/sound-effect-card.mp3');
 
-export default function SoundControl() {
-  const [isSoundOn, setIsSoundOn] = useState(true);
+export function playSoundEffect(el) {
+  if (el === 'btn') {
+    btnSfx.currentTime = 0;
+    btnSfx.play();
+  } else {
+    cardFlipSfx.currentTime = 0;
+    cardFlipSfx.play();
+  }
+}
+
+export default function SoundButton({ onClick, isSoundOn }) {
+  function handleClick() {
+    if (!isSoundOn) playSoundEffect('btn');
+    onClick?.();
+  }
 
   return (
     <button
-      onClick={() => setIsSoundOn(!isSoundOn)}
+      onClick={handleClick}
       type="button"
       className="relative cursor-pointer flex justify-center row-start-2 items-center rounded-full bg-white w-12 h-12 border-3 border-(--clr-border) shadow-(--shadow) transition-[box-shadow,scale] duration-300 ease-out hover:shadow-(--shadow-hover) active:scale-[0.95] lg:w-16 lg:h-16 lg:row-start-2 lg:col-start-3 lg:justify-self-end"
     >
@@ -14,7 +28,7 @@ export default function SoundControl() {
           viewBox="0 0 20 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className='w-5 h-5 lg:w-8 lg:h-8'
+          className="w-5 h-5 lg:w-8 lg:h-8"
         >
           <path
             fillRule="evenodd"
@@ -28,7 +42,7 @@ export default function SoundControl() {
           viewBox="0 0 20 20"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className='w-5 h-5 lg:w-8 lg:h-8'
+          className="w-5 h-5 lg:w-8 lg:h-8"
         >
           <path
             fillRule="evenodd"
