@@ -1,8 +1,8 @@
 import Scoreboard from './Scoreboard';
 import SoundButton from './SoundControl';
-import Button from './Button';
+import Button, { BTN_LABELS } from './Button';
 
-export default function Header({ onSoundToggle, isSoundOn }) {
+export default function Header({ onSoundToggle, isSoundOn, onClick }) {
   return (
     <header className="relative grid grid-cols-2 items-center gap-y-8 lg:grid-cols-3">
       <a className="w-fit" href="/">
@@ -11,8 +11,8 @@ export default function Header({ onSoundToggle, isSoundOn }) {
 
       <Scoreboard />
       <Button
-        label="Change mode"
-        onClick={() => console.log('Change mode button clicked')}
+        label={BTN_LABELS.CHANGE_MODE}
+        onClick={onClick}
         isSoundOn={isSoundOn}
       />
       <SoundButton onClick={onSoundToggle} isSoundOn={isSoundOn} />
