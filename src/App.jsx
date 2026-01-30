@@ -30,6 +30,7 @@ function App() {
           <Header
             onSoundToggle={() => setIsSoundOn(!isSoundOn)}
             isSoundOn={isSoundOn}
+            onClick={() => setMode(null)}
           />
           <Game mode={mode} />
           <Footer />
