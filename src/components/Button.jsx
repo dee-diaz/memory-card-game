@@ -1,7 +1,13 @@
 import { playSoundEffect } from './SoundControl';
 
+export const BTN_LABELS = {
+  CHANGE_MODE: 'Change mode',
+  RESTART: 'Restart',
+};
+
 export default function Button({ label, onClick, isSoundOn }) {
   function handleClick() {
+    if (label === BTN_LABELS.CHANGE_MODE) 
     if (isSoundOn) playSoundEffect('btn');
     onClick?.();
   }
