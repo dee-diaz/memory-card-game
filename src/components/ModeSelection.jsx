@@ -6,7 +6,7 @@ export const MODE = {
   HARD: 'Hard',
 };
 
-export default function ModeSelection({ onClick }) {
+export default function ModeSelection({ onClick, isSoundOn }) {
   return (
     <div className="relative grid gap-16 justify-center -translate-y-16">
       <div className="grid gap-8 justify-center">
@@ -16,9 +16,9 @@ export default function ModeSelection({ onClick }) {
         </h1>
       </div>
       <div className="grid justify-center gap-6 lg:flex">
-        <ModeButton onClick={onClick} mode={MODE.EASY} />
-        <ModeButton onClick={onClick} mode={MODE.MEDIUM} />
-        <ModeButton onClick={onClick} mode={MODE.HARD} />
+        <ModeButton onClick={onClick} mode={MODE.EASY} isSoundOn={isSoundOn} />
+        <ModeButton onClick={onClick} mode={MODE.MEDIUM} isSoundOn={isSoundOn} />
+        <ModeButton onClick={onClick} mode={MODE.HARD} isSoundOn={isSoundOn} />
       </div>
     </div>
   );

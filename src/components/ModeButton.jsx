@@ -1,6 +1,13 @@
 import { MODE } from './ModeSelection';
+import { playSoundEffect } from './SoundControl';
 
-export default function ModeButton({ mode, onClick }) {
+
+export default function ModeButton({ mode, onClick, isSoundOn }) {
+  function handleClick() {
+    if (isSoundOn) playSoundEffect('btn');
+    onClick?.(mode);
+  }
+
   const bgColors = {
     [MODE.EASY]: 'bg-[var(--clr-btn-easy)]',
     [MODE.MEDIUM]: 'bg-[var(--clr-btn-medium)]',
@@ -13,7 +20,7 @@ export default function ModeButton({ mode, onClick }) {
     <button
       type="button"
       className={`cursor-pointer ${bgClr} py-4 px-8 rounded-2xl uppercase text-2xl border-3 border-(--clr-border) shadow-(--shadow) transition-[box-shadow,translate,scale] duration-300 ease-out hover:shadow-(--shadow-hover) hover:-translate-y-0.5 active:scale-[0.95]`}
-      onClick={() => onClick(mode)}
+      onClick={handleClick}
     >
       {mode}
     </button>

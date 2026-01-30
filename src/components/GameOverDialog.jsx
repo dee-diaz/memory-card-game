@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import Button from './Button';
 
-export default function GameOverDialog({ result, onClose }) {
+export default function GameOverDialog({ result, onClose, isSoundOn }) {
   const dialogRef = useRef(null);
   useEffect(() => {
     dialogRef.current?.showModal();
@@ -31,7 +31,7 @@ export default function GameOverDialog({ result, onClose }) {
         {message}
       </h2>
 
-      <Button label="Restart" onClick={handleClose} />
+      <Button label="Restart" onClick={handleClose} isSoundOn={isSoundOn} />
     </dialog>
   );
 }

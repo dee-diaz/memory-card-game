@@ -1,8 +1,8 @@
 import Scoreboard from './Scoreboard';
-import SoundControl from './SoundControl';
+import SoundButton from './SoundControl';
 import Button from './Button';
 
-export default function Header() {
+export default function Header({ onSoundToggle, isSoundOn }) {
   return (
     <header className="relative grid grid-cols-2 items-center gap-y-8 lg:grid-cols-3">
       <a className="w-fit" href="/">
@@ -10,8 +10,12 @@ export default function Header() {
       </a>
 
       <Scoreboard />
-      <Button label="Change mode" onClick={() => console.log('Change mode button clicked')} />
-      <SoundControl />
+      <Button
+        label="Change mode"
+        onClick={() => console.log('Change mode button clicked')}
+        isSoundOn={isSoundOn}
+      />
+      <SoundButton onClick={onSoundToggle} isSoundOn={isSoundOn} />
     </header>
   );
 }
