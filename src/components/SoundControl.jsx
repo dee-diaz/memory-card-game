@@ -4,10 +4,10 @@ const cardFlipSfx = new Audio('/audio/sound-effect-card.mp3');
 export function playSoundEffect(el) {
   if (el === 'btn') {
     btnSfx.currentTime = 0;
-    btnSfx.play();
+    btnSfx.play().catch((err) => console.warn('Audio play failed:', err));
   } else {
     cardFlipSfx.currentTime = 0;
-    cardFlipSfx.play();
+    cardFlipSfx.play().catch((err) => console.warn('Audio play failed:', err));
   }
 }
 
