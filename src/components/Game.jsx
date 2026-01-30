@@ -44,7 +44,7 @@ export default function Game({ mode }) {
   return (
     <div className="relative">
       <CardGrid mode={mode} cards={cardsArr} />
-      <ProgressIndicator />
+      <ProgressIndicator numOfCards={cardsArr.length} />
     </div>
   );
 }
