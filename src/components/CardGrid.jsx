@@ -1,7 +1,7 @@
 import { MODE } from './ModeSelection';
 import Card from './Card';
 
-export default function CardGrid({ mode }) {
+export default function CardGrid({ mode, cards }) {
   let gridColsClass;
   let maxWidth;
 
@@ -17,15 +17,13 @@ export default function CardGrid({ mode }) {
     <div
       className={`${maxWidth} mx-auto grid grid-cols-2 gap-5 ${gridColsClass} my-16 md:grid-cols-3`}
     >
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-
-      <Card className="lg:col-start-2" />
-      <Card />
-      <Card />
+      {cards.map((card, index) => {
+        return mode === MODE.MEDIUM && index === 5 ? (
+          <Card key={card} pokemonName={card} className="lg:col-start-2" />
+        ) : (
+          <Card key={card} pokemonName={card} />
+        );
+      })}
     </div>
   );
 }

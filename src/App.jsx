@@ -31,7 +31,7 @@ function App() {
             onSoundToggle={() => setIsSoundOn(!isSoundOn)}
             isSoundOn={isSoundOn}
           />
-          <Game />
+          <Game mode={mode} />
           <Footer />
           {isGameOver && (
             <GameOverDialog
