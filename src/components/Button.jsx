@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { SoundContext } from '../contexts/soundContext';
+import { ModeContext } from '../contexts/modeContext';
 import { playSoundEffect } from './SoundControl';
 
 export const BTN_LABELS = {
@@ -7,13 +8,14 @@ export const BTN_LABELS = {
   RESTART: 'Restart',
 };
 
-export default function Button({ label, onClick }) {
+export default function Button({ label }) {
   const { isSoundOn } = useContext(SoundContext);
+  const { setMode } = useContext(ModeContext);
   
   function handleClick() {
     if (label === BTN_LABELS.CHANGE_MODE) 
     if (isSoundOn) playSoundEffect('btn');
-    onClick?.();
+    setMode(null);
   }
 
   return (

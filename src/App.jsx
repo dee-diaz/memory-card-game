@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { ModeContext } from './contexts/modeContext';
 import Layout from './components/Layout';
 import SoundButton from './components/SoundControl';
 import ModeSelection from './components/ModeSelection';
@@ -6,7 +7,6 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Game from './components/Game';
 import GameOverDialog from './components/GameOverDialog';
-import SoundContextProvider from './contexts/soundContext';
 
 const GAME_RESULT = {
   WIN: 'win',
@@ -14,7 +14,7 @@ const GAME_RESULT = {
 };
 
 function App() {
-  const [mode, setMode] = useState(null);
+  const { mode } = useContext(ModeContext);
   const [touchedCards, setTouchedCards] = useState([]);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
@@ -27,31 +27,27 @@ function App() {
   }
 
   return (
-    <SoundContextProvider>
-      <Layout>
-        {mode ? (
-          <>
-            <Header onClick={() => setMode(null)} />
-            <Game mode={mode} />
-            <Footer />
-            {isGameOver && (
-              <GameOverDialog
-                result={GAME_RESULT.WIN}
-                onClose={() => setIsGameOver(false)}
-              />
-            )}
-          </>
-        ) : (
-          <>
-            <SoundButton />
-            <ModeSelection
-              onClick={(value) => setMode(value)}
+    <Layout>
+      {mode ? (
+        <>
+          <Header />
+          <Game mode={mode} />
+          <Footer />
+          {isGameOver && (
+            <GameOverDialog
+              result={GAME_RESULT.WIN}
+              onClose={() => setIsGameOver(false)}
             />
-            <Footer />
-          </>
-        )}
-      </Layout>
-    </SoundContextProvider>
+          )}
+        </>
+      ) : (
+        <>
+          <SoundButton />
+          <ModeSelection />
+          <Footer />
+        </>
+      )}
+    </Layout>
   );
 }
 
