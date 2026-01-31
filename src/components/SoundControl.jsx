@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { SoundContext } from '../contexts/soundContext';
+
 const btnSfx = new Audio('/audio/sound-effect-btn.mp3');
 const cardFlipSfx = new Audio('/audio/sound-effect-card.mp3');
 
@@ -11,10 +14,12 @@ export function playSoundEffect(el) {
   }
 }
 
-export default function SoundButton({ onClick, isSoundOn }) {
+export default function SoundButton() {
+  const { isSoundOn, setIsSoundOn } = useContext(SoundContext);
+
   function handleClick() {
     if (!isSoundOn) playSoundEffect('btn');
-    onClick?.();
+    setIsSoundOn(!isSoundOn);
   }
 
   return (

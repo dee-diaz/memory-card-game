@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Game from './components/Game';
 import GameOverDialog from './components/GameOverDialog';
+import SoundContextProvider from './contexts/soundContext';
 
 const GAME_RESULT = {
   WIN: 'win',
@@ -14,48 +15,43 @@ const GAME_RESULT = {
 
 function App() {
   const [mode, setMode] = useState(null);
+  const [touchedCards, setTouchedCards] = useState([]);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
-  const [isSoundOn, setIsSoundOn] = useState(true);
 
   function restartGame() {
+    // saves the score to bestScore if score > bestScore
+    // resets the score
     console.log('Restart game');
   }
 
   return (
-    <Layout>
-      {mode ? (
-        <>
-          <Header
-            onSoundToggle={() => setIsSoundOn(!isSoundOn)}
-            isSoundOn={isSoundOn}
-            onClick={() => setMode(null)}
-          />
-          <Game mode={mode} />
-          <Footer />
-          {isGameOver && (
-            <GameOverDialog
-              result={GAME_RESULT.WIN}
-              isSoundOn={isSoundOn}
-              onClose={() => setIsGameOver(false)}
+    <SoundContextProvider>
+      <Layout>
+        {mode ? (
+          <>
+            <Header onClick={() => setMode(null)} />
+            <Game mode={mode} />
+            <Footer />
+            {isGameOver && (
+              <GameOverDialog
+                result={GAME_RESULT.WIN}
+                onClose={() => setIsGameOver(false)}
+              />
+            )}
+          </>
+        ) : (
+          <>
+            <SoundButton />
+            <ModeSelection
+              onClick={(value) => setMode(value)}
             />
-          )}
-        </>
-      ) : (
-        <>
-          <SoundButton
-            onClick={() => setIsSoundOn(!isSoundOn)}
-            isSoundOn={isSoundOn}
-          />
-          <ModeSelection
-            onClick={(value) => setMode(value)}
-            isSoundOn={isSoundOn}
-          />
-          <Footer />
-        </>
-      )}
-    </Layout>
+            <Footer />
+          </>
+        )}
+      </Layout>
+    </SoundContextProvider>
   );
 }
 

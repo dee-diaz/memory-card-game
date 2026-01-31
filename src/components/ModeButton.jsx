@@ -1,8 +1,12 @@
+import { useContext } from 'react';
+import { SoundContext } from '../contexts/soundContext';
 import { MODE } from './ModeSelection';
 import { playSoundEffect } from './SoundControl';
 
 
-export default function ModeButton({ mode, onClick, isSoundOn }) {
+export default function ModeButton({ mode, onClick }) {
+  const { isSoundOn } = useContext(SoundContext);
+
   function handleClick() {
     if (isSoundOn) playSoundEffect('btn');
     onClick?.(mode);
