@@ -1,7 +1,7 @@
 import { MODE } from './ModeSelection';
 import Card from './Card';
 
-export default function CardGrid({ mode, cards }) {
+export default function CardGrid({ mode, cards, onCardClick }) {
   let gridColsClass;
   let maxWidth;
 
@@ -19,9 +19,9 @@ export default function CardGrid({ mode, cards }) {
     >
       {cards.map((card, index) => {
         return mode === MODE.MEDIUM && index === 5 ? (
-          <Card key={card} pokemonName={card} className="lg:col-start-2" />
+          <Card key={card} pokemonName={card} className="lg:col-start-2" onCardClick={onCardClick} />
         ) : (
-          <Card key={card} pokemonName={card} />
+          <Card key={card} pokemonName={card} onCardClick={onCardClick} />
         );
       })}
     </div>

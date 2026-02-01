@@ -1,7 +1,7 @@
-export default function Card({ pokemonImg, pokemonName, className }) {
+export default function Card({ pokemonImg, pokemonName, className, onCardClick }) {
   return (
     <button
-      onClick={() => console.log('Card clicked')}
+      onClick={() => onCardClick(pokemonName)}
       className={`relative h-68 transform-3d will-change-transform ${className} bg-(--clr-bg-card) cursor-pointer rounded-3xl border-2 border-(--clr-border) shadow-(--shadow-card) transition-all duration-500 ease-out hover:bg-(--clr-bg-card-hover) lg:border-3 hover:rotate-y-180`}
     >
       <div className="front absolute inset-0 w-full h-full backface-hidden">
@@ -11,7 +11,7 @@ export default function Card({ pokemonImg, pokemonName, className }) {
 
         <div className="h-16 border-t-2 flex items-center justify-center lg:border-t-3 lg:min-h-20">
           <p className="text-center uppercase text-xl">
-            {pokemonName || 'Crabominable'}
+            {pokemonName}
           </p>
         </div>
       </div>
