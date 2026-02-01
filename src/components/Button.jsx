@@ -8,14 +8,14 @@ export const BTN_LABELS = {
   RESTART: 'Restart',
 };
 
-export default function Button({ label }) {
+export default function Button({ label, onClick }) {
   const { isSoundOn } = useContext(SoundContext);
   const { setMode } = useContext(ModeContext);
   
   function handleClick() {
-    if (label === BTN_LABELS.CHANGE_MODE) 
     if (isSoundOn) playSoundEffect('btn');
-    setMode(null);
+    if (label === BTN_LABELS.CHANGE_MODE) setMode(null);
+    if (label === BTN_LABELS.RESTART) onClick?.();
   }
 
   return (
