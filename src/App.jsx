@@ -2,11 +2,13 @@ import { useState, useContext, useEffect } from 'react';
 import { ModeContext } from './contexts/modeContext';
 import Layout from './components/Layout';
 import SoundButton from './components/SoundControl';
+import Button, { BTN_LABELS } from './components/Button';
 import ModeSelection from './components/ModeSelection';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Game from './components/Game';
 import GameOverDialog from './components/GameOverDialog';
+import Scoreboard from './components/Scoreboard';
 
 const NUM_OF_CARDS = {
   Easy: 5,
@@ -22,29 +24,24 @@ function App() {
   const [isGameOver, setIsGameOver] = useState(false);
   const [isWinner, setIsWinner] = useState(null);
 
-  function endRound() {
-    setIsGameOver(true);
-    if (score > bestScore) setBestScore(score);
-  }
-
-
   function handleCardClick(cardTitle) {
-  if (touchedCards.includes(cardTitle)) {
-    setIsWinner(false);
-    endRound();
-  } else {
-    const newTouchedCards = [...touchedCards, cardTitle];
-    setTouchedCards(newTouchedCards);
-    setScore((prev) => prev + 1);
-    
-    if (newTouchedCards.length === NUM_OF_CARDS[mode]) {
-      setIsWinner(true);
-      endRound();
+    if (touchedCards.includes(cardTitle)) {
+      setIsWinner(false);
+      setIsGameOver(true);
+    } else {
+      const newTouchedCards = [...touchedCards, cardTitle];
+      setTouchedCards(newTouchedCards);
+      setScore((prev) => prev + 1);
+
+      if (newTouchedCards.length === NUM_OF_CARDS[mode]) {
+        setIsWinner(true);
+        setIsGameOver(true);
+      }
     }
   }
-}
 
   function restart() {
+    if (score > bestScore) setBestScore(score);
     setIsGameOver(false);
     setIsWinner(null);
     setScore(0);
@@ -55,7 +52,9 @@ function App() {
     <Layout>
       {mode ? (
         <>
-          <Header />
+          <Header>
+            <Scoreboard score={score} bestScore={bestScore} />
+          </Header>
           <Game mode={mode} onCardClick={handleCardClick} />
           <Footer />
           {isGameOver && (
