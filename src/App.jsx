@@ -2,13 +2,13 @@ import { useState, useContext, useEffect } from 'react';
 import { ModeContext } from './contexts/modeContext';
 import Layout from './components/Layout';
 import SoundButton from './components/SoundControl';
-import Button, { BTN_LABELS } from './components/Button';
 import ModeSelection from './components/ModeSelection';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Game from './components/Game';
 import GameOverDialog from './components/GameOverDialog';
 import Scoreboard from './components/Scoreboard';
+import ProgressIndicator from './components/ProgressIndicator';
 
 const NUM_OF_CARDS = {
   Easy: 5,
@@ -55,7 +55,9 @@ function App() {
           <Header>
             <Scoreboard score={score} bestScore={bestScore} />
           </Header>
-          <Game mode={mode} onCardClick={handleCardClick} />
+          <Game mode={mode} onCardClick={handleCardClick}>
+            <ProgressIndicator progress={score} numOfCards={NUM_OF_CARDS[mode]} />
+          </Game>
           <Footer />
           {isGameOver && (
             <GameOverDialog

@@ -30,7 +30,7 @@ const twelvePokemon = [
   'Toxtricity',
 ];
 
-export default function Game({ mode, onCardClick }) {
+export default function Game({ mode, onCardClick, children }) {
   let cardsArr;
 
   if (mode === MODE.EASY) {
@@ -44,7 +44,7 @@ export default function Game({ mode, onCardClick }) {
   return (
     <div className="relative">
       <CardGrid mode={mode} cards={cardsArr} onCardClick={onCardClick} />
-      <ProgressIndicator numOfCards={cardsArr.length} />
+      {children}
     </div>
   );
 }
