@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { ModeContext } from './contexts/modeContext';
 import Layout from './components/Layout';
 import SoundButton from './components/SoundControl';
@@ -8,9 +8,10 @@ import Header from './components/Header';
 import Game from './components/Game';
 import GameOverDialog from './components/GameOverDialog';
 
-const GAME_RESULT = {
-  WIN: 'win',
-  LOSE: 'lose',
+const NUM_OF_CARDS = {
+  Easy: 5,
+  Medium: 8,
+  Hard: 12,
 };
 
 function App() {
@@ -19,11 +20,35 @@ function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [isWinner, setIsWinner] = useState(null);
 
-  function restartGame() {
-    // saves the score to bestScore if score > bestScore
-    // resets the score
-    console.log('Restart game');
+  function endRound() {
+    setIsGameOver(true);
+    if (score > bestScore) setBestScore(score);
+  }
+
+
+  function handleCardClick(cardTitle) {
+  if (touchedCards.includes(cardTitle)) {
+    setIsWinner(false);
+    endRound();
+  } else {
+    const newTouchedCards = [...touchedCards, cardTitle];
+    setTouchedCards(newTouchedCards);
+    setScore((prev) => prev + 1);
+    
+    if (newTouchedCards.length === NUM_OF_CARDS[mode]) {
+      setIsWinner(true);
+      endRound();
+    }
+  }
+}
+
+  function restart() {
+    setIsGameOver(false);
+    setIsWinner(null);
+    setScore(0);
+    setTouchedCards([]);
   }
 
   return (
@@ -31,12 +56,13 @@ function App() {
       {mode ? (
         <>
           <Header />
-          <Game mode={mode} />
+          <Game mode={mode} onCardClick={handleCardClick} />
           <Footer />
           {isGameOver && (
             <GameOverDialog
-              result={GAME_RESULT.WIN}
-              onClose={() => setIsGameOver(false)}
+              isOpen={isGameOver}
+              isWinner={isWinner}
+              onClose={restart}
             />
           )}
         </>
