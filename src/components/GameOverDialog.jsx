@@ -1,26 +1,25 @@
 import { useRef, useEffect } from 'react';
-import Button from './Button';
+import Button, { BTN_LABELS } from './Button';
 
-export default function GameOverDialog({ result, onClose }) {
+export const GAME_RESULT = {
+  WIN: 'win',
+  LOSE: 'lose',
+};
+
+export default function GameOverDialog({ isOpen, isWinner, onClose }) {
   const dialogRef = useRef(null);
+
   useEffect(() => {
-    dialogRef.current?.showModal();
-  }, []);
+    const dialog = dialogRef.current;
+    if (!dialog) return;
 
-  let bgImg;
-  let message;
+    isOpen ? dialog.showModal() : dialog.close();
+  }, [isOpen]);
 
-  if (result === 'win') {
-    message = 'You win!';
-    bgImg = 'bg-[url(/win.webp)]';
-  } else {
-    ((message = 'You lose...'), (bgImg = 'bg-[url(/lose.webp)]'));
-  }
-
-  function handleClose() {
-    dialogRef.current?.close();
-    onClose?.();
-  }
+  const message = isWinner ? 'You win!' : 'You lose...';
+  const bgImg = isWinner
+    ? 'bg-[url(/win.webp)]'
+    : 'bg-[url(/lose.webp)]';
 
   return (
     <dialog
@@ -31,7 +30,7 @@ export default function GameOverDialog({ result, onClose }) {
         {message}
       </h2>
 
-      <Button label="Restart" onClick={handleClose} />
+      <Button label={BTN_LABELS.RESTART} onClick={onClose} />
     </dialog>
   );
 }
