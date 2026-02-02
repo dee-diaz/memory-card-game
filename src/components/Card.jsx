@@ -1,8 +1,26 @@
-export default function Card({ pokemonImg, pokemonName, className, onCardClick }) {
+import { useContext } from 'react';
+import { SoundContext } from '../contexts/soundContext';
+import { playSoundEffect } from './SoundControl';
+
+export default function Card({
+  pokemonImg,
+  pokemonName,
+  className,
+  isRotated,
+  onCardClick,
+}) {
+  const { isSoundOn } = useContext(SoundContext);
+
+  function handleClick() {
+    onCardClick?.(pokemonName);
+    if (isSoundOn) playSoundEffect();
+  }
+
+
   return (
     <button
-      onClick={() => onCardClick(pokemonName)}
-      className={`relative h-68 transform-3d will-change-transform ${className} bg-(--clr-bg-card) cursor-pointer rounded-3xl border-2 border-(--clr-border) shadow-(--shadow-card) transition-all duration-500 ease-out hover:bg-(--clr-bg-card-hover) lg:border-3 hover:rotate-y-180`}
+      onClick={handleClick}
+      className={`relative h-68 transform-3d perspective-midrange will-change-transform ${className} bg-(--clr-bg-card) cursor-pointer rounded-3xl border-2 border-(--clr-border) shadow-(--shadow-card) hover:bg-(--clr-bg-card-hover) lg:border-3 ${isRotated ? 'rotate-y-360 transition-transform duration-1000 ease-out' : ''}`}
     >
       <div className="front absolute inset-0 w-full h-full backface-hidden">
         <div className="h-32 p-5 lg:h-48 2xl:p-10">
@@ -10,9 +28,7 @@ export default function Card({ pokemonImg, pokemonName, className, onCardClick }
         </div>
 
         <div className="h-16 border-t-2 flex items-center justify-center lg:border-t-3 lg:min-h-20">
-          <p className="text-center uppercase text-xl">
-            {pokemonName}
-          </p>
+          <p className="text-center uppercase text-xl">{pokemonName}</p>
         </div>
       </div>
 
