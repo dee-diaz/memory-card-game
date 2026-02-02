@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { MODE } from './ModeSelection';
 import Card from './Card';
 
-export default function CardGrid({ mode, cards, onCardClick }) {
+export default function CardGrid({ mode, data, onCardClick }) {
   const [isRotated, setIsRotated] = useState(false);
+  const [cards, setCards] = useState(data);
 
   let gridColsClass;
   let maxWidth;
@@ -17,7 +18,21 @@ export default function CardGrid({ mode, cards, onCardClick }) {
 
   function handleCardClick(cardName) {
     setIsRotated(true);
+    const shuffledCards = shuffleCards(cards);
+    setCards(shuffledCards);
     onCardClick(cardName);
+  }
+
+  // Fisher-Yates shuffle
+  function shuffleCards(array) {
+    const shuffled = [...array];
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    return shuffled;
   }
 
   if (mode === MODE.EASY || mode === MODE.MEDIUM) {
@@ -35,13 +50,19 @@ export default function CardGrid({ mode, cards, onCardClick }) {
       {cards.map((card, index) => {
         return mode === MODE.MEDIUM && index === 5 ? (
           <Card
-            key={card}
-            pokemonName={card} isRotated={isRotated}
+            key={index}
+            pokemonName={card}
+            isRotated={isRotated}
             className="lg:col-start-2"
             onCardClick={handleCardClick}
           />
         ) : (
-          <Card key={card} pokemonName={card} isRotated={isRotated} onCardClick={handleCardClick} />
+          <Card
+            key={index}
+            pokemonName={card}
+            isRotated={isRotated}
+            onCardClick={handleCardClick}
+          />
         );
       })}
     </div>

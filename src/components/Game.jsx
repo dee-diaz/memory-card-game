@@ -1,5 +1,4 @@
 import CardGrid from './CardGrid';
-import ProgressIndicator from './ProgressIndicator';
 import { MODE } from './ModeSelection';
 
 const fivePokemon = ['Luxray', 'Gardevoir', 'Tyrantrum', 'Milotic', 'Haxorus'];
@@ -31,19 +30,19 @@ const twelvePokemon = [
 ];
 
 export default function Game({ mode, onCardClick, children }) {
-  let cardsArr;
+  let cards;
 
   if (mode === MODE.EASY) {
-    cardsArr = fivePokemon;
+    cards = fivePokemon;
   } else if (mode === MODE.MEDIUM) {
-    cardsArr = eightPokemon;
+    cards = eightPokemon;
   } else {
-    cardsArr = twelvePokemon;
+    cards = twelvePokemon;
   }
 
   return (
     <div className="relative">
-      <CardGrid mode={mode} cards={cardsArr} onCardClick={onCardClick} />
+      <CardGrid mode={mode} data={cards} onCardClick={onCardClick} />
       {children}
     </div>
   );
