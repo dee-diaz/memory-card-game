@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { MODE } from './ModeSelection';
 import Card from './Card';
 
-export default function CardGrid({ mode, data, onCardClick }) {
+
+
+export default function CardGrid({ mode, pokemons, onCardClick }) {
   const [isRotated, setIsRotated] = useState(false);
-  const [cards, setCards] = useState(data);
+  const [cards, setCards] = useState(pokemons);
 
   let gridColsClass;
   let maxWidth;
@@ -15,6 +17,10 @@ export default function CardGrid({ mode, data, onCardClick }) {
     const timer = setTimeout(() => setIsRotated(false), 1000);
     return () => clearTimeout(timer);
   }, [isRotated]);
+
+  useEffect(() => {
+    setCards(pokemons);
+  }, [pokemons]);
 
   function handleCardClick(cardName) {
     setIsRotated(true);
@@ -51,7 +57,7 @@ export default function CardGrid({ mode, data, onCardClick }) {
         return mode === MODE.MEDIUM && index === 5 ? (
           <Card
             key={index}
-            pokemonName={card}
+            pokemon={card}
             isRotated={isRotated}
             className="lg:col-start-2"
             onCardClick={handleCardClick}
@@ -59,7 +65,7 @@ export default function CardGrid({ mode, data, onCardClick }) {
         ) : (
           <Card
             key={index}
-            pokemonName={card}
+            pokemon={card}
             isRotated={isRotated}
             onCardClick={handleCardClick}
           />

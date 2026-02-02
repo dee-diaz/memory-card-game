@@ -5,16 +5,11 @@ import SoundButton from './components/SoundControl';
 import ModeSelection from './components/ModeSelection';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Game from './components/Game';
+import Game, { NUM_OF_CARDS } from './components/Game';
 import GameOverDialog from './components/GameOverDialog';
 import Scoreboard from './components/Scoreboard';
 import ProgressIndicator from './components/ProgressIndicator';
 
-const NUM_OF_CARDS = {
-  Easy: 5,
-  Medium: 8,
-  Hard: 12,
-};
 
 function App() {
   const { mode } = useContext(ModeContext);
