@@ -1,5 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
 import { ModeContext } from './contexts/modeContext';
+import { GameContext } from './contexts/gameContext';
 import Layout from './components/Layout';
 import SoundButton from './components/SoundControl';
 import ModeSelection from './components/ModeSelection';
@@ -16,7 +17,7 @@ function App() {
   const [touchedCards, setTouchedCards] = useState([]);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
-  const [isGameOver, setIsGameOver] = useState(false);
+  const { isGameOver, setIsGameOver } = useContext(GameContext);
   const [isWinner, setIsWinner] = useState(null);
 
   function handleCardClick(cardTitle) {
@@ -50,7 +51,7 @@ function App() {
           <Header onClick={restart}>
             <Scoreboard score={score} bestScore={bestScore} />
           </Header>
-          <Game mode={mode} onCardClick={handleCardClick}>
+          <Game mode={mode} onCardClick={handleCardClick} isGameOver={isGameOver}>
             <ProgressIndicator progress={score} numOfCards={NUM_OF_CARDS[mode]} />
           </Game>
           <Footer />

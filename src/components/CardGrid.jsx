@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { MODE } from './ModeSelection';
 import Card from './Card';
-
-
+import { GameContext } from '../contexts/gameContext';
 
 export default function CardGrid({ mode, pokemons, onCardClick }) {
+  const { isGameOver } = useContext(GameContext);
   const [isRotated, setIsRotated] = useState(false);
   const [cards, setCards] = useState(pokemons);
 
@@ -22,11 +22,10 @@ export default function CardGrid({ mode, pokemons, onCardClick }) {
     setCards(pokemons);
   }, [pokemons]);
 
-  function handleCardClick(cardName) {
+  function flipAndShuffle() {
     setIsRotated(true);
     const shuffledCards = shuffleCards(cards);
     setCards(shuffledCards);
-    onCardClick(cardName);
   }
 
   // Fisher-Yates shuffle
@@ -58,16 +57,22 @@ export default function CardGrid({ mode, pokemons, onCardClick }) {
           <Card
             key={index}
             pokemon={card}
-            isRotated={isRotated}
+            isRotated={isRotated && !isGameOver}
             className="lg:col-start-2"
-            onCardClick={handleCardClick}
+            onCardClick={() => {
+              onCardClick(card.name);
+              if (!isGameOver) flipAndShuffle();
+            }}
           />
         ) : (
           <Card
             key={index}
             pokemon={card}
-            isRotated={isRotated}
-            onCardClick={handleCardClick}
+            isRotated={isRotated && !isGameOver}
+            onCardClick={() => {
+              onCardClick(card.name);
+              if (!isGameOver) flipAndShuffle();
+            }}
           />
         );
       })}
