@@ -15,7 +15,7 @@ export default function Button({ label, onClick }) {
   function handleClick() {
     if (isSoundOn) playSoundEffect('btn');
     if (label === BTN_LABELS.CHANGE_MODE) setMode(null);
-    if (label === BTN_LABELS.RESTART) onClick?.();
+    onClick();
   }
 
   return (

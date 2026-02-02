@@ -52,7 +52,7 @@ function App() {
     <Layout>
       {mode ? (
         <>
-          <Header>
+          <Header onClick={restart}>
             <Scoreboard score={score} bestScore={bestScore} />
           </Header>
           <Game mode={mode} onCardClick={handleCardClick}>
