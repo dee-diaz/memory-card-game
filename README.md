@@ -4,7 +4,7 @@ A React-based memory card game where players must click each Pokemon card only o
 
 [Live Demo](https://memory-card-game-dd.netlify.app/) | [Report Bug](https://github.com/dee-diaz/memory-card-game/issues)
 
-![Game Screenshot](screenshot.png)
+![Game Screenshot](game-screenshot.png)
 
 ## Features
 
