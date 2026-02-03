@@ -11,7 +11,7 @@ export default function Card({ pokemon, className, isRotated, onCardClick }) {
         if (isSoundOn) playSoundEffect();
         onCardClick(pokemon.name);
       }}
-      className={`relative h-68 transform-3d perspective-midrange will-change-transform ${className} bg-(--clr-bg-card) cursor-pointer rounded-3xl border-2 border-(--clr-border) shadow-(--shadow-card) hover:bg-(--clr-bg-card-hover) lg:border-3 ${isRotated ? 'rotate-y-360 transition-transform duration-1200 ease-out' : ''}`}
+      className={`relative h-50 transform-3d perspective-midrange will-change-transform ${className} bg-(--clr-bg-card) cursor-pointer rounded-3xl border-2 border-(--clr-border) shadow-(--shadow-card) transition-colors 300ms ease-out hover:bg-(--clr-bg-card-hover) lg:h-68 lg:border-3 ${isRotated ? 'rotate-y-360 transition-transform duration-1200 ease-out' : ''}`}
     >
       <div className="front absolute inset-0 w-full h-full backface-hidden">
         <div className="h-32 p-5 lg:h-48 2xl:p-10">
