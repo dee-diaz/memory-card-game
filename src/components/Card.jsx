@@ -28,7 +28,6 @@ export default function Card({ pokemon, className, isRotated, onCardClick }) {
       </div>
 
       <div className="flex justify-center items-center absolute inset-0 w-full h-full bg-[url('/card-back.webp')] bg-no-repeat bg-cover backface-hidden rotate-y-180 rounded-3xl">
-        <img className="w-40" src="/card-back.webp" alt="" />
       </div>
     </button>
   );
