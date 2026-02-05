@@ -4,7 +4,6 @@ import { ModeContext } from '../contexts/modeContext';
 import { MODE } from './ModeSelection';
 import { playSoundEffect } from './SoundControl';
 
-
 export default function ModeButton({ mode }) {
   const { isSoundOn } = useContext(SoundContext);
   const { setMode } = useContext(ModeContext);

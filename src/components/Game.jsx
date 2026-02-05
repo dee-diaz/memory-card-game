@@ -51,9 +51,9 @@ export default function Game({ mode, onCardClick, children }) {
 
   useEffect(() => {
     let names = namesByMode[mode];
-    
+
     const url = 'https://pokeapi.co/api/v2/pokemon/';
-    
+
     async function fetchData() {
       try {
         const fetchPromises = names.map((name) => fetch(url + name));

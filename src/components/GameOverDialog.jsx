@@ -17,9 +17,7 @@ export default function GameOverDialog({ isOpen, isWinner, onClose }) {
   }, [isOpen]);
 
   const message = isWinner ? 'You win!' : 'You lose...';
-  const bgImg = isWinner
-    ? 'bg-[url(/win.webp)]'
-    : 'bg-[url(/lose.webp)]';
+  const bgImg = isWinner ? 'bg-[url(/win.webp)]' : 'bg-[url(/lose.webp)]';
 
   return (
     <dialog

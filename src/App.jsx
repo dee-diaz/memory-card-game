@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { ModeContext } from './contexts/modeContext';
 import { GameContext } from './contexts/gameContext';
 import Layout from './components/Layout';
@@ -10,7 +10,6 @@ import Game, { NUM_OF_CARDS } from './components/Game';
 import GameOverDialog from './components/GameOverDialog';
 import Scoreboard from './components/Scoreboard';
 import ProgressIndicator from './components/ProgressIndicator';
-
 
 function App() {
   const { mode } = useContext(ModeContext);
@@ -51,8 +50,15 @@ function App() {
           <Header onClick={restart}>
             <Scoreboard score={score} bestScore={bestScore} />
           </Header>
-          <Game mode={mode} onCardClick={handleCardClick} isGameOver={isGameOver}>
-            <ProgressIndicator progress={score} numOfCards={NUM_OF_CARDS[mode]} />
+          <Game
+            mode={mode}
+            onCardClick={handleCardClick}
+            isGameOver={isGameOver}
+          >
+            <ProgressIndicator
+              progress={score}
+              numOfCards={NUM_OF_CARDS[mode]}
+            />
           </Game>
           <Footer />
           {isGameOver && (

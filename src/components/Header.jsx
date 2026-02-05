@@ -8,10 +8,7 @@ export default function Header({ children, onClick }) {
         <img className="w-32 lg:w-48" src="/logo.webp" alt="Pokemon logo" />
       </a>
       {children}
-      <Button
-        label={BTN_LABELS.CHANGE_MODE}
-        onClick={onClick}
-      />
+      <Button label={BTN_LABELS.CHANGE_MODE} onClick={onClick} />
       <SoundButton />
     </header>
   );

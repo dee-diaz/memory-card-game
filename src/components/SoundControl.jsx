@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext } from 'react';
 import { SoundContext } from '../contexts/soundContext';
 
 const btnSfx = new Audio('/audio/sound-effect-btn.mp3');
