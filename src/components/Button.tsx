@@ -1,6 +1,5 @@
-import { useContext } from 'react';
-import { SoundContext } from '../contexts/soundContext';
-import { ModeContext } from '../contexts/modeContext';
+import { useSound } from '../hooks/useSound';
+import { useMode } from '../hooks/useMode';
 import { playSoundEffect } from './SoundControl';
 
 export const BTN_LABELS = {
@@ -8,11 +7,19 @@ export const BTN_LABELS = {
   RESTART: 'Restart',
 };
 
-export default function Button({ label, onClick }) {
-  const { isSoundOn } = useContext(SoundContext);
-  const { setMode } = useContext(ModeContext);
+type ButtonLabel = (typeof BTN_LABELS)[keyof typeof BTN_LABELS];
 
-  function handleClick() {
+interface ButtonProps {
+  label: ButtonLabel,
+  onClick: () => void;
+}
+
+
+export default function Button({ label, onClick } : ButtonProps) {
+  const { isSoundOn } = useSound();
+  const { setMode } = useMode();
+
+  function handleClick(): void {
     if (isSoundOn) playSoundEffect('btn');
     if (label === BTN_LABELS.CHANGE_MODE) setMode(null);
     onClick();
