@@ -6,7 +6,7 @@ interface CardProps {
     name: string;
     image: string;
   };
-  className: string;
+  className?: string;
   isRotated: boolean;
   onCardClick: (pokemon: string) => void;
 }
