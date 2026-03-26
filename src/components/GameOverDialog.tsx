@@ -4,10 +4,16 @@ import Button, { BTN_LABELS } from './Button';
 export const GAME_RESULT = {
   WIN: 'win',
   LOSE: 'lose',
-};
+} as const;
 
-export default function GameOverDialog({ isOpen, isWinner, onClose }) {
-  const dialogRef = useRef(null);
+interface GameOverDialogProps {
+  isOpen: boolean;
+  isWinner: boolean | null;
+  onClose: () => void;
+}
+
+export default function GameOverDialog({ isOpen, isWinner, onClose }: GameOverDialogProps) {
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   useEffect(() => {
     const dialog = dialogRef.current;

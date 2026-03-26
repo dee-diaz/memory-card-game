@@ -1,12 +1,16 @@
-import { useContext } from 'react';
-import { SoundContext } from '../contexts/soundContext';
-import { ModeContext } from '../contexts/modeContext';
+import { useMode } from '../hooks/useMode';
+import { useSound } from '../hooks/useSound';
 import { MODE } from './ModeSelection';
 import { playSoundEffect } from './SoundControl';
+import type { Mode } from '../contexts/modeContext';
 
-export default function ModeButton({ mode }) {
-  const { isSoundOn } = useContext(SoundContext);
-  const { setMode } = useContext(ModeContext);
+interface ModeButtonProps {
+  mode: Mode;
+}
+
+export default function ModeButton({ mode }: ModeButtonProps) {
+  const { isSoundOn } = useSound();
+  const { setMode } = useMode();
 
   function handleClick() {
     if (isSoundOn) playSoundEffect('btn');

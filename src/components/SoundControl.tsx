@@ -1,10 +1,9 @@
-import { useContext } from 'react';
-import { SoundContext } from '../contexts/soundContext';
+import { useSound } from "../hooks/useSound";
 
 const btnSfx = new Audio('/audio/sound-effect-btn.mp3');
 const cardFlipSfx = new Audio('/audio/sound-effect-card.mp3');
 
-export function playSoundEffect(el) {
+export function playSoundEffect(el?: 'btn'): void {
   if (el === 'btn') {
     btnSfx.currentTime = 0;
     btnSfx.play().catch((err) => console.warn('Audio play failed:', err));
@@ -15,9 +14,9 @@ export function playSoundEffect(el) {
 }
 
 export default function SoundButton() {
-  const { isSoundOn, setIsSoundOn } = useContext(SoundContext);
+  const { isSoundOn, setIsSoundOn } = useSound();
 
-  function handleClick() {
+  function handleClick(): void {
     if (!isSoundOn) playSoundEffect('btn');
     setIsSoundOn(!isSoundOn);
   }

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import CardGrid from './CardGrid';
 import { MODE } from './ModeSelection';
+import type { Mode } from '../contexts/modeContext';
 
 const fiveNames = [
   'bulbasaur',
@@ -46,8 +47,19 @@ const namesByMode = {
   [MODE.HARD]: twelveNames,
 };
 
-export default function Game({ mode, onCardClick, children }) {
-  const [pokemons, setPokemons] = useState([]);
+interface GameProps {
+  mode: Mode;
+  onCardClick: (arg: string) => void;
+  children: React.ReactNode;
+}
+
+export interface Pokemon {
+  name: string;
+  image: string;
+}
+
+export default function Game({ mode, onCardClick, children }: GameProps) {
+  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
   useEffect(() => {
     let names = namesByMode[mode];
@@ -65,8 +77,10 @@ export default function Game({ mode, onCardClick, children }) {
           image: item.sprites.other.dream_world.front_default,
         }));
         setPokemons(pokemon);
-      } catch (error) {
-        throw new Error(error);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.log(error.message);
+        }
       }
     }
 

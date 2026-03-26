@@ -1,12 +1,20 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { MODE } from './ModeSelection';
 import Card from './Card';
-import { GameContext } from '../contexts/gameContext';
+import { useGame } from '../hooks/useGame';
+import type { Mode } from '../contexts/modeContext';
+import { Pokemon } from './Game';
 
-export default function CardGrid({ mode, pokemons, onCardClick }) {
-  const { isGameOver } = useContext(GameContext);
+interface CardGridProps {
+  mode: Mode;
+  pokemons: Pokemon[];
+  onCardClick: (arg: string) => void;
+}
+
+export default function CardGrid({ mode, pokemons, onCardClick }: CardGridProps) {
+  const { isGameOver } = useGame();
   const [isRotated, setIsRotated] = useState(false);
-  const [cards, setCards] = useState(pokemons);
+  const [cards, setCards] = useState<Pokemon[]>(pokemons);
 
   let gridColsClass;
   let maxWidth;
@@ -22,14 +30,14 @@ export default function CardGrid({ mode, pokemons, onCardClick }) {
     setCards(pokemons);
   }, [pokemons]);
 
-  function flipAndShuffle() {
+  function flipAndShuffle(): void {
     setIsRotated(true);
     const shuffledCards = shuffleCards(cards);
     setCards(shuffledCards);
   }
 
   // Fisher-Yates shuffle
-  function shuffleCards(array) {
+  function shuffleCards(array: Pokemon[]) {
     const shuffled = [...array];
 
     for (let i = shuffled.length - 1; i > 0; i--) {

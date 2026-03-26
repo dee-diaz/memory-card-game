@@ -2,11 +2,15 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import SoundContextProvider from './contexts/soundContext';
 import ModeContextProvider from './contexts/modeContext';
-import GameContextProvider from './contexts/gameContext.jsx';
+import GameContextProvider from './contexts/gameContext';
 import './index.css';
-import App from './App.jsx';
+import App from './App';
 
-createRoot(document.getElementById('root')).render(
+const root = document.getElementById('root');
+
+if (!root) throw new Error('Root element not found');
+
+createRoot(root).render(
   <StrictMode>
     <GameContextProvider>
       <SoundContextProvider>
