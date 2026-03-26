@@ -1,9 +1,23 @@
-import { useContext } from 'react';
-import { SoundContext } from '../contexts/soundContext';
+import { useSound } from '../hooks/useSound';
 import { playSoundEffect } from './SoundControl';
 
-export default function Card({ pokemon, className, isRotated, onCardClick }) {
-  const { isSoundOn } = useContext(SoundContext);
+interface CardProps {
+  pokemon: {
+    name: string;
+    image: string;
+  };
+  className: string;
+  isRotated: boolean;
+  onCardClick: (pokemon: string) => void;
+}
+
+export default function Card({
+  pokemon,
+  className,
+  isRotated,
+  onCardClick,
+}: CardProps) {
+  const { isSoundOn } = useSound();
 
   return (
     <button
