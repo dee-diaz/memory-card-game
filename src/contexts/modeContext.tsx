@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 import { Props } from '../types/props';
 
-type Mode = 'Easy' | 'Medium' | 'Hard';
+export type Mode = 'Easy' | 'Medium' | 'Hard';
 
 interface ModeContextType {
   mode: Mode | null;

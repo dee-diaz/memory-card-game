@@ -4,7 +4,7 @@ export const MODE = {
   EASY: 'Easy',
   MEDIUM: 'Medium',
   HARD: 'Hard',
-};
+} as const;
 
 export default function ModeSelection() {
   return (
